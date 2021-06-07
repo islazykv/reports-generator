@@ -19,7 +19,7 @@ class Position(models.Model):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"id: {self.id}, product: {self.product}, quantity: {self.quantity}"
+        return f"id: {self.id}, product: {self.product.name}, quantity: {self.quantity}"
 
 class Sale(models.Model):
     transaction_id = models.CharField(max_length=12, blank=True)
