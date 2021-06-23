@@ -15,7 +15,7 @@ def home_view(request):
     merged_df = None
     df = None
     chart = None
-    form = SalesSearchForm(request.POST or None)
+    search_form = SalesSearchForm(request.POST or None)
 
     if request.method == 'POST':
         date_from = request.POST.get('date_from')
@@ -59,7 +59,7 @@ def home_view(request):
             print('no data')
 
     context = {
-        'form':form,
+        'search_form': search_form,
         'sales_df': sales_df,
         'positions_df': positions_df,
         'merged_df': merged_df,
