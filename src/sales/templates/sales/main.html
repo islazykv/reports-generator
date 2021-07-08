@@ -5,14 +5,18 @@ Sales List
 {% endblock title %}
 
 {% block content %}
-sales list
+<div class='mb-1'>
+   <b>Sales list:</b>
+</div>
 
 <br>
 
 {% for obj in object_list %}
-    <a href="{{obj.get_absolute_url}}">
-    {{obj.transaction_id}}
-    </a>
+    <div class="card mb-3">
+        <a href="{{obj.get_absolute_url}}">
+        {{obj.transaction_id}}
+        </a>
+    </div>
 {% endfor %}
 
 {% endblock content %}
