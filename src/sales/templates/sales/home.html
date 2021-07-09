@@ -39,43 +39,84 @@ Home
   </div>
 {% endif %}
   
-<div class="row border">
+<div class="row">
 
-<div class="col-6 border">
-  <form action="", method="POST">
-      {% csrf_token %}
-      {{search_form|crispy}}
-      <button type="submit" class="btn btn-primary mt-3">Search</button>
-  </form>
+  <div class="col-5">
+    {% comment %} <div class="m-3"> {% endcomment %}
+      <h4>To generate a report:</h4>
+      <ul>
+      <li>select a period of interest,</li>
+      <li>choose a chart type (bar, pie or line),</li>
+      <li>choose grouping by (transaction id or sales date).</li>
+      </ul>
+      <p class="text-center">
+      The transactions have been provided for the whole year of 2021 which can be looked in the "Sales" page. 
+      Upon clicking search, dataframes are displayed and a report. This report can be saved by clicking "Add Report"
+      with a provided name and remarks. A generated report can be viewed in the "Reports" page where they can be downloaded. 
+      Alternatively, it is possible to upload an already prepared CSV file complying with dataframe architecture in the "Add from file" page.
+      </p>
+    {% comment %} </div> {% endcomment %}
+  </div>
+
+  <div class="col-2">
+  </div>
+
+  <div class="col-5 border">
+    <form action="", method="POST" class="m-3">
+        {% csrf_token %}
+        {{search_form|crispy}}
+        <div class="d-flex flex-column justify-content-center align-items-center">
+          <button type="submit" class="btn btn-primary mt-3">Search</button>
+        </div>
+    </form>
+  </div>
 </div>
 
-<div class="col-6 border">
-  COŚ
-</div>
-
-</div>
-
+<br>
+<hr>
 <br>
 
 
 {% if sales_df %}
-    sales df
+<div class="border border-4">
+<div class="m-3">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <h4>DataFrames</h4>
+    </div>
+
+    Sales dataframe:
     {{sales_df|safe}}
     <br>
-    positions df
+    Positions dataframe:
     {{positions_df|safe}}
     <br>
-    merged df
+    Merged dataframe:
     {{merged_df|safe}}
     <br>
-    groupedby df
+    Groupedby dataframe:
     {{df|safe}}
-    <br>
-    <img src="data:image/png;base64, {{chart|safe}}" id="img">
+</div>
+</div>
+
+<br>
+
+<div class="border border-4">
+  <div class="m-3">
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <h4>Report</h4>
+  </div>
+
+  <div class="m-3 d-flex flex-column justify-content-center align-items-center">
+      <img src="data:image/png;base64, {{chart|safe}}" id="img">
+  </div>
+</div>
+
 {% endif %}
     
 <br>
+<div class="d-flex flex-column justify-content-center align-items-center mb-3">
 <button class="btn btn-primary not-visible" id='report-btn' data-bs-toggle="modal" data-bs-target="#reportModal">Add Report</button>
+</div>
 
 {% endblock content %}
 
